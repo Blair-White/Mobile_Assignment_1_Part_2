@@ -132,8 +132,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 114814880}
-  - component: {fileID: 114814879}
   - component: {fileID: 114814878}
+  - component: {fileID: 114814879}
   m_Layer: 0
   m_Name: AbyssVaporLogo
   m_TagString: Untagged
@@ -150,9 +150,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 114814877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd10b8a6e3dd4fe4bb22a6a0952dc6c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 05de67d2e67e6d2479b788ecb9f0c937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FadeState: 0
+  rate: 0
+  mAlpha: 0
 --- !u!212 &114814879
 SpriteRenderer:
   m_ObjectHideFlags: 0
