@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BounceFade : MonoBehaviour
+public class LogoFade : MonoBehaviour
 {
     public int FadeState = 0;
     public float rate = 0;
     private float baseRate = 0;
     private float targetAlpha = 0;
     public float mAlpha = 0;
-    private Renderer mRenderer;
+    private SpriteRenderer mRenderer;
     private int transitionThrottle;
     private bool upDown;
     private void Awake()
     {
         mRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        mRenderer.material.color = new Color(1, 1, 1, 0);
+        mRenderer.color = new Color(1, 1, 1, 0);
     }
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,7 @@ public class BounceFade : MonoBehaviour
             case 8: targetAlpha = 1; upDown = false;  break;
             case 9:
                 transitionThrottle++;
-                if(mRenderer.material.color.a <= 0 && transitionThrottle > 140)
+                if(mRenderer.color.a <= 0 && transitionThrottle > 140)
                 {
                     SceneManager.LoadScene(1);
                 }
@@ -59,13 +59,13 @@ public class BounceFade : MonoBehaviour
 
       
 
-        mRenderer.material.color = new Color(1, 1, 1, mRenderer.material.color.a + rate);
+        mRenderer.color = new Color(1, 1, 1, mRenderer.color.a + rate);
         rate *= 1.01f;
 
 
         if(!upDown)
         {
-            if(mRenderer.material.color.a >= targetAlpha)
+            if(mRenderer.color.a >= targetAlpha)
             {
                 upDown = false;
                 rate = -baseRate;
@@ -74,7 +74,7 @@ public class BounceFade : MonoBehaviour
         }
         if(upDown)
         {
-            if (mRenderer.material.color.a <= targetAlpha)
+            if (mRenderer.color.a <= targetAlpha)
             {
                 upDown = true;
                 rate = baseRate;
