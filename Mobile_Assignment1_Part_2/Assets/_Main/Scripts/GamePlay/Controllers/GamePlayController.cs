@@ -24,6 +24,7 @@ public class GamePlayController : MonoBehaviour
             {
                 init = true; initTimer = 0;
                 score.SetActive(true); shields.SetActive(true); hull.SetActive(true); scrap.SetActive(true);
+                
             }
         }
 
