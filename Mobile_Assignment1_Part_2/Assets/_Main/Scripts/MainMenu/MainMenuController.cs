@@ -10,7 +10,8 @@ public class MainMenuController : MonoBehaviour
     private int throttle,timer,state;
     private bool isInit, isInstructions;
     public GameObject button1, button2, title, panel,instructions,tapanywhere;
-    
+    public AudioSource mAudioSource;
+    public AudioClip mAudioClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +72,7 @@ public class MainMenuController : MonoBehaviour
                             instructions.SendMessage("FadeOut");
                             tapanywhere.SetActive(false);
                             throttle = 0;
+                            mAudioSource.PlayOneShot(mAudioClip);
                         }
                     }
                 }    
