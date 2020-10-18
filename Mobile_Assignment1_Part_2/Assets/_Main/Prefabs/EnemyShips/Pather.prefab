@@ -112,10 +112,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8680921759713272253}
   - component: {fileID: 2345404136798687964}
+  - component: {fileID: -6389781612635727226}
   - component: {fileID: 8249122286193849400}
+  - component: {fileID: 2479712344957963162}
   m_Layer: 0
   m_Name: Pather
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,10 +151,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PathType: 1
   PathNumber: 0
+  PathState: 0
+  MoveSpeed: 0
   Path_1_Transforms: []
   Path_2_Transforms: []
   Path_3_Transforms: []
   HoverTransforms: []
+--- !u!114 &-6389781612635727226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6035986956265864203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af1edbdcee4a27d41870aefed92aea85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 8
 --- !u!212 &8249122286193849400
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -204,3 +221,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &2479712344957963162
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6035986956265864203}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.68, y: 1.36}
+    newSize: {x: 0.68, y: 1.36}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.68, y: 1.36}
+  m_EdgeRadius: 0

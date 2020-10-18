@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossScript : MonoBehaviour
+public class CrasherScript : MonoBehaviour
 {
-    public int HP = 152;
+    public int HP = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +17,6 @@ public class BossScript : MonoBehaviour
         if (HP <= 0) DestroyedByPlayer();
     }
 
-    void DestroyedByPlayer()
-    {
-
-
-        Destroy(this.gameObject);
-    }
-
     void HitBullet()
     {
         HP -= 1;
@@ -34,5 +27,10 @@ public class BossScript : MonoBehaviour
         HP -= 10;
     }
 
+    void DestroyedByPlayer()
+    {
 
+
+        Destroy(this.gameObject);
+    }
 }

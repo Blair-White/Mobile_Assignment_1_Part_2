@@ -16,7 +16,7 @@ public class SimpleChase : MonoBehaviour
         mPlayer = GameObject.Find("PlayerCharacter");
         targetTransform = mPlayer.transform;
         turnRate = 2;
-        if (movespeed == 0) movespeed = 0.5f;
+        if (movespeed == 0) movespeed = 3f;
     }
 
     // Update is called once per frame

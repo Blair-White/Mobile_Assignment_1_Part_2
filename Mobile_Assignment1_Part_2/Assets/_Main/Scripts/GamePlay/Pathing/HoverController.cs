@@ -9,6 +9,8 @@ public class HoverController : MonoBehaviour
     private int CurrentHoverTarget, NewHoverTarget;
     private float waitCount, ShootCount, ShootInterval;
     public float TimeBetweenMoves, MoveSpeed;
+
+    public int HP = 25;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,7 @@ public class HoverController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (HP <= 0) DestroyedByPlayer();
         transform.right = mPlayer.transform.position - transform.position;
 
         if (Vector3.Distance(this.transform.position, HoverPositions[CurrentHoverTarget].position) > 0.2f)
@@ -49,6 +51,20 @@ public class HoverController : MonoBehaviour
 
 
     }
+    void HitBullet()
+    {
+        HP -= 1;
+    }
+
+    void HitMissile()
+    {
+        HP -= 10;
+    }
+
+    void DestroyedByPlayer()
+    {
 
 
+        Destroy(this.gameObject);
+    }
 }

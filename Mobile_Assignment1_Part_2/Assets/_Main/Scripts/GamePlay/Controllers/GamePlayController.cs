@@ -7,7 +7,7 @@ public class GamePlayController : MonoBehaviour
     private bool init;
     private int initTimer, gameTimer;
     public GameObject mPlayer, uiCanvas, score, shields, hull, scrap, 
-        shieldsUpButton, shieldsUp, attackSpeedUpButton, attackSpeedUp, missileUpButton, missileUp;
+        shieldsUpButton, attackSpeedUpButton,missileUpButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,5 +30,11 @@ public class GamePlayController : MonoBehaviour
 
 
 
+    }
+
+    public void UpgradeCannon()
+    {
+
+        Debug.Log("TEST UPGRADE WEAPON");
     }
 }
