@@ -5,6 +5,10 @@ using UnityEngine;
 public class HoverController : MonoBehaviour
 {
     private GameObject mPlayer, HoverPositionParent, StartPosition;
+    public GameObject explosion;
+    public GameObject AudioPlayer;
+    public AudioSource AudioSrc;
+    public AudioClip ExplosionSound;
     private Transform[] HoverPositions;
     private int CurrentHoverTarget, NewHoverTarget;
     private float waitCount, ShootCount, ShootInterval;
@@ -17,6 +21,8 @@ public class HoverController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioPlayer = GameObject.Find("SFX AudioSource");
+        AudioSrc = AudioPlayer.GetComponent<AudioSource>();
         if (MoveSpeed == 0) MoveSpeed = 3;
         if (TimeBetweenMoves == 0) TimeBetweenMoves = 4;
         HoverPositionParent = GameObject.Find("HoverPositions");
@@ -80,8 +86,8 @@ public class HoverController : MonoBehaviour
 
     void DestroyedByPlayer()
     {
-
-
+        AudioSrc.PlayOneShot(ExplosionSound);
+        Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
         Destroy(this.gameObject);
     }
 }

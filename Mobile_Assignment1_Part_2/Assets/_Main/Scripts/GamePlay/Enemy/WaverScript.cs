@@ -6,12 +6,17 @@ public class WaverScript : MonoBehaviour
 {
     public int HP = 8;
     public SpriteRenderer mRenderer;
+    public GameObject explosion;
+    public GameObject AudioPlayer;
+    public AudioSource AudioSrc;
+    public AudioClip ExplosionSound;
     private bool isHit;
     private int count;
     // Start is called before the first frame update
     void Start()
     {
-
+        AudioPlayer = GameObject.Find("SFX AudioSource");
+        AudioSrc = AudioPlayer.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -45,8 +50,8 @@ public class WaverScript : MonoBehaviour
 
     void DestroyedByPlayer()
     {
-
-
+        AudioSrc.PlayOneShot(ExplosionSound);
+        Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
         Destroy(this.gameObject);
     }
 }
