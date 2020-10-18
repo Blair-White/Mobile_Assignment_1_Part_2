@@ -5,7 +5,7 @@ using UnityEngine;
 public class SimpleChase : MonoBehaviour
 {
     private GameObject mPlayer;
-    private int turnRate;
+
     public float movespeed;
     private Transform targetTransform;
     private Vector3 lookPos;
@@ -15,7 +15,7 @@ public class SimpleChase : MonoBehaviour
     {
         mPlayer = GameObject.Find("PlayerCharacter");
         targetTransform = mPlayer.transform;
-        turnRate = 2;
+
         if (movespeed == 0) movespeed = 3f;
     }
 

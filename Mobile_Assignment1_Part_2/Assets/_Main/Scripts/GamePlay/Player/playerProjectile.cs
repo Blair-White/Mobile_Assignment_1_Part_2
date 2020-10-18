@@ -38,6 +38,7 @@ public class playerProjectile : MonoBehaviour
             collision.gameObject.SendMessage("HitBullet");
             AudioSrc.volume = 1.0f;            
             AudioSrc.PlayOneShot(ImpactSound);
+            Instantiate(ImpactEffect, new Vector3(collision.transform.position.x, collision.transform.position.y,0), Quaternion.Euler(0,0,90));
             Destroy(this.gameObject);
         }
     }

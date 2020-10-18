@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 5
+  mRenderer: {fileID: 8620077788043380086}
 --- !u!61 &321078359186234526
 BoxCollider2D:
   m_ObjectHideFlags: 0

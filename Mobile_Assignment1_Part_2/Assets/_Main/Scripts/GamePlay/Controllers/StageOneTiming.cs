@@ -8,9 +8,9 @@ public class StageOneTiming : MonoBehaviour
     public int SecondsPast;
     public int SpawnState;
     public GameObject Crasher, Hoverer, Pather, Boss;
-    private Transform Path1Start, Path2Start, Path3Start, HoverStart;
+    private Transform Path2Start, Path3Start, HoverStart;
     private Vector3 CrasherStartPos;
-    
+    private Transform Path1Start = null;
     // Start is called before the first frame update
     void Start()
     {

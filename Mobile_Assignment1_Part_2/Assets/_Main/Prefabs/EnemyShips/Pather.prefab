@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 8
+  mRenderer: {fileID: 8249122286193849400}
 --- !u!212 &8249122286193849400
 SpriteRenderer:
   m_ObjectHideFlags: 0

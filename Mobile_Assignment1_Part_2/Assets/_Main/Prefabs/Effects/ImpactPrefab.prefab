@@ -115,3 +115,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3f251a5273ce34e80509590a8b365a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyClip: {fileID: 7400000, guid: 2e3ba252179236449840eba169118f92, type: 2}
+  TimePassed: 0
