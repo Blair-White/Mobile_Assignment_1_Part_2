@@ -8,6 +8,7 @@ public class GamePlayController : MonoBehaviour
     private int initTimer, gameTimer;
     public GameObject mPlayer, uiCanvas, score, shields, hull, scrap, 
         shieldsUpButton, attackSpeedUpButton,missileUpButton;
+    public GameObject mShields, mHull, mScrap;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class GamePlayController : MonoBehaviour
             {
                 init = true; initTimer = 0;
                 score.SetActive(true); shields.SetActive(true); hull.SetActive(true); scrap.SetActive(true);
-                
+                mHull.SetActive(true); mShields.SetActive(true); mScrap.SetActive(true);
             }
         }
 

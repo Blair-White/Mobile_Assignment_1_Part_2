@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 7714141272751416648, guid: d76b72c51d87d564c946b7541f4cd3d9, type: 3}
+  mBullet: {fileID: 8821237131676988949, guid: 6f4af4e8db9b9e744a161d3a27d2ecbb, type: 3}
   AudioPlayer: {fileID: 0}
   AudioSrc: {fileID: 0}
   ExplosionSound: {fileID: 8300000, guid: 9232f3b6b06e1364d83c3447b0d9dd4a, type: 3}

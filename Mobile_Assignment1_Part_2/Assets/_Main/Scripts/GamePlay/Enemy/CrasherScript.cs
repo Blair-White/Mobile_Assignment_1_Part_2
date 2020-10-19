@@ -56,4 +56,14 @@ public class CrasherScript : MonoBehaviour
         Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
         Destroy(this.gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            collision.gameObject.SendMessage("PlayerHit", 0.25f);
+            DestroyedByPlayer();
+        }
+    }
+
 }

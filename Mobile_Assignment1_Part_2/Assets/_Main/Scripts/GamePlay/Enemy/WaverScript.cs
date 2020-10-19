@@ -6,12 +6,13 @@ public class WaverScript : MonoBehaviour
 {
     public int HP = 8;
     public SpriteRenderer mRenderer;
-    public GameObject explosion;
+    public GameObject explosion, mBullet;
     public GameObject AudioPlayer;
     public AudioSource AudioSrc;
     public AudioClip ExplosionSound;
     private bool isHit;
-    private int count;
+    private int count, shootcount;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,13 @@ public class WaverScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        shootcount++;
+        if(shootcount > 300)
+        {
+            GameObject b = Instantiate(mBullet, transform.position, Quaternion.identity);
+            b.GetComponent<EnemyProjectile>().mDamage = .15f;
+            shootcount = 0;
+        }
         if (isHit)
         {
             count++;

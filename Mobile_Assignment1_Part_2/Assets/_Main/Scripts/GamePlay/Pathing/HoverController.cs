@@ -5,12 +5,12 @@ using UnityEngine;
 public class HoverController : MonoBehaviour
 {
     private GameObject mPlayer, HoverPositionParent, StartPosition;
-    public GameObject explosion;
+    public GameObject explosion, mBullet;
     public GameObject AudioPlayer;
     public AudioSource AudioSrc;
     public AudioClip ExplosionSound;
     private Transform[] HoverPositions;
-    private int CurrentHoverTarget, NewHoverTarget;
+    private int CurrentHoverTarget, NewHoverTarget, shootcount;
     private float waitCount, ShootCount, ShootInterval;
     public float TimeBetweenMoves, MoveSpeed;
 
@@ -57,6 +57,8 @@ public class HoverController : MonoBehaviour
             transform.position = Vector3.MoveTowards(this.transform.position, 
                 new Vector3(HoverPositions[CurrentHoverTarget].position.x, HoverPositions[CurrentHoverTarget].position.y, 0), MoveSpeed * Time.deltaTime);
         }
+            
+
 
         waitCount += Time.deltaTime;
         if(waitCount > TimeBetweenMoves)
@@ -71,6 +73,15 @@ public class HoverController : MonoBehaviour
         }
 
 
+        shootcount++;
+        if (shootcount > 60)
+        {
+            Debug.Log("lkajs;ldjflajsdf");
+            GameObject b = Instantiate(mBullet, transform.position, Quaternion.identity);
+            b.GetComponent<EnemyProjectile>().mDamage = .25f;
+            shootcount = 0;
+        }
+
     }
     void HitBullet()
     {
@@ -82,6 +93,8 @@ public class HoverController : MonoBehaviour
     void HitMissile(int AddedDamage)
     {
         HP -= 2 + AddedDamage;
+        isHit = true;
+        mRenderer.color = new Color(1, 0, 0, 1);
     }
 
     void DestroyedByPlayer()
