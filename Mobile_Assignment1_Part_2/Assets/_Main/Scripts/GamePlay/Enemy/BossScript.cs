@@ -43,9 +43,11 @@ public class BossScript : MonoBehaviour
         mRenderer.color = new Color(1, 0, 0, 1);
     }
 
-    void HitMissile()
+    void HitMissile(int AddedDamage)
     {
-        HP -= 10;
+        HP -= 2 + AddedDamage;
+        isHit = true;
+        mRenderer.color = new Color(1, 0, 0, 1);
     }
 
     void DestroyedByPlayer()

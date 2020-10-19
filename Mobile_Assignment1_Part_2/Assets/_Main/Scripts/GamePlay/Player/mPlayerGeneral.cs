@@ -6,7 +6,7 @@ public class mPlayerGeneral : MonoBehaviour
 {
     public int ShootThrottle, MissileThrottle;
     private int ShootCount, MissileCount;
-    public GameObject projectile, muzzle;
+    public GameObject projectile, muzzle, missile;
     public int MissileAddedDamage = 0;
     // Start is called before the first frame update
     void Start()
@@ -26,5 +26,12 @@ public class mPlayerGeneral : MonoBehaviour
             muzzle.SetActive(true);
         }
 
+        MissileCount++;
+        if(MissileCount > MissileThrottle)
+        {
+          MissileCount = 0;
+          GameObject m = Instantiate(missile, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
+          m.GetComponent<PlayerMissileScript>().AddedDamage = MissileAddedDamage;  
+        }
     }
 }
