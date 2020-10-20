@@ -6,7 +6,7 @@ public class WaverScript : MonoBehaviour
 {
     public int HP = 8;
     public SpriteRenderer mRenderer;
-    public GameObject explosion, mBullet;
+    public GameObject explosion, mBullet, coin, healthpack, mPlayer;
     public GameObject AudioPlayer;
     public AudioSource AudioSrc;
     public AudioClip ExplosionSound;
@@ -17,6 +17,7 @@ public class WaverScript : MonoBehaviour
     void Start()
     {
         AudioPlayer = GameObject.Find("SFX AudioSource");
+        mPlayer = GameObject.Find("PlayerCharacter");
         AudioSrc = AudioPlayer.GetComponent<AudioSource>();
     }
 
@@ -62,6 +63,19 @@ public class WaverScript : MonoBehaviour
     {
         AudioSrc.PlayOneShot(ExplosionSound);
         Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        GameObject c = Instantiate(coin, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        c.GetComponent<CoinPickup>().expmultiplier = 3;
+        RollForHealthDrop();
+        mPlayer.SendMessage("GetScore", Random.Range(25, 35));
         Destroy(this.gameObject);
+    }
+
+    void RollForHealthDrop()
+    {
+        int r = Random.Range(0, 100);
+        if (r > 90)
+        {
+            Instantiate(healthpack, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        }
     }
 }

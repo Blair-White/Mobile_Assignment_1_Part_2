@@ -5,7 +5,7 @@ using UnityEngine;
 public class HoverController : MonoBehaviour
 {
     private GameObject mPlayer, HoverPositionParent, StartPosition;
-    public GameObject explosion, mBullet;
+    public GameObject explosion, mBullet, coin, Healthpack;
     public GameObject AudioPlayer;
     public AudioSource AudioSrc;
     public AudioClip ExplosionSound;
@@ -76,7 +76,7 @@ public class HoverController : MonoBehaviour
         shootcount++;
         if (shootcount > 60)
         {
-            Debug.Log("lkajs;ldjflajsdf");
+
             GameObject b = Instantiate(mBullet, transform.position, Quaternion.identity);
             b.GetComponent<EnemyProjectile>().mDamage = .25f;
             shootcount = 0;
@@ -101,6 +101,19 @@ public class HoverController : MonoBehaviour
     {
         AudioSrc.PlayOneShot(ExplosionSound);
         Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        GameObject c = Instantiate(coin, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        c.GetComponent<CoinPickup>().expmultiplier = 5;
+        RollForHealthDrop();
+        mPlayer.SendMessage("GetScore", Random.Range(105, 155));
         Destroy(this.gameObject);
+    }
+
+    void RollForHealthDrop()
+    {
+        int r = Random.Range(0, 100);
+        if(r > 100)
+        {
+            Instantiate(Healthpack, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        }
     }
 }

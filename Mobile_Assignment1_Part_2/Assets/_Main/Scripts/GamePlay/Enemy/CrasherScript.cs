@@ -5,7 +5,7 @@ using UnityEngine;
 public class CrasherScript : MonoBehaviour
 {
     public int HP = 5;
-    public GameObject explosion;
+    public GameObject explosion, coin, healthpack, mPlayer;
     public SpriteRenderer mRenderer;
     public GameObject AudioPlayer;
     public AudioSource AudioSrc;
@@ -15,6 +15,7 @@ public class CrasherScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mPlayer = GameObject.Find("PlayerCharacter");
         AudioPlayer = GameObject.Find("SFX AudioSource");
         AudioSrc = AudioPlayer.GetComponent<AudioSource>();
     }
@@ -54,6 +55,10 @@ public class CrasherScript : MonoBehaviour
     {
         AudioSrc.PlayOneShot(ExplosionSound);
         Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        GameObject c = Instantiate(coin, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        c.GetComponent<CoinPickup>().expmultiplier = 1;
+        mPlayer.SendMessage("GetScore", Random.Range(15, 35));
+        RollForHealthDrop();
         Destroy(this.gameObject);
     }
 
@@ -63,7 +68,16 @@ public class CrasherScript : MonoBehaviour
         {
             collision.gameObject.SendMessage("PlayerHit", 0.25f);
             DestroyedByPlayer();
+           
         }
     }
 
+    void RollForHealthDrop()
+    {
+        int r = Random.Range(0, 100);
+        if (r >= 90)
+        {
+            Instantiate(healthpack, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        }
+    }
 }

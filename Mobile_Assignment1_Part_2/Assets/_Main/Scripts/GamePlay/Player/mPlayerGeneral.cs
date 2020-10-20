@@ -1,20 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class mPlayerGeneral : MonoBehaviour
 {
     public int ShootThrottle, MissileThrottle;
     private int ShootCount, MissileCount;
-    public GameObject projectile, muzzle, missile;
+    public GameObject projectile, muzzle, missile, mAudioPlayer;
     public int MissileAddedDamage = 0;
     public GameObject HealthBar, ShieldBar, ExpBar, ScoreText;
     public float Health, HealthDisplayed, Shield, ShieldDisplayed, Exp, ExpDisplayed;
-    private float ShieldRegenRate = 0.001f;     
+    public float ShieldRegenRate = 0.001f;
     private int Score, ScoreDisplayed, MyLevel;
     public SpriteRenderer mRenderer;
-    private bool isHit;
-    private int count;
+    private bool isHit, isCollectCoin;
+    private int count, coinResetCount;
+
+    public AudioSource mAudSource;
+    public AudioClip[] coinclips;
+    public AudioClip HealSound;
+    public int coinstate;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,16 +33,19 @@ public class mPlayerGeneral : MonoBehaviour
         HealthDisplayed = 1f;
         ShieldDisplayed = 1f;
         ExpDisplayed = 0f;
+        mAudSource = mAudioPlayer.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isCollectCoin) coinResetCount++;
+        if (coinResetCount > 300) { isCollectCoin = false; coinResetCount = 0; coinstate = 0; }
 
         if (isHit)
         {
             count++;
-            if (count > 3)
+            if (count > 5)
             {
                 mRenderer.color = new Color(1, 1, 1, 1);
                 isHit = false;
@@ -62,13 +72,15 @@ public class mPlayerGeneral : MonoBehaviour
         
         if (Shield > 1) { Shield = 1; }
         if (Shield < 0) { Shield = 0; }
-        
-        if (Exp >= 1) PlayerLevelUp();
+
+        if (Exp >= 1) { Exp = 1; PlayerLevelUp(); }
         if (Exp <= 0) { Exp = 0; }
 
         HealthBar.gameObject.transform.localScale =new Vector3(HealthDisplayed,1, 1);
         ShieldBar.gameObject.transform.localScale = new Vector3(ShieldDisplayed,1, 1 );
         ExpBar.gameObject.transform.localScale = new Vector3(ExpDisplayed, 1, 1 );
+        ScoreText.GetComponent<TextMeshProUGUI>().text = ScoreDisplayed.ToString();
+
 
         muzzle.SetActive(false);
         ShootCount++;
@@ -111,12 +123,28 @@ public class mPlayerGeneral : MonoBehaviour
 
     void HealPlayer(float HealAmount)
     {
+        if (Shield + HealAmount >= 1)
+        {
+            float SpillDamage = HealAmount - (1 - Shield);
+            Shield = 1;
+            Health += SpillDamage;
+        }
+        else if (Shield + HealAmount < 1)
+        { Shield += HealAmount; }
 
+        isHit = true;
+        mRenderer.color = new Color(0, 1, 0, 1);
+        mAudSource.PlayOneShot(HealSound);
     }
 
     void GetExp(float ExpAmount)
     {
         ExpAmount /= MyLevel;
+        Exp += ExpAmount;
+        mAudSource.PlayOneShot(coinclips[coinstate]);
+        coinstate++;
+        if (coinstate > 3) coinstate = 0;
+        isCollectCoin = true;
     }
 
     void UpgradeCannon()
@@ -136,7 +164,7 @@ public class mPlayerGeneral : MonoBehaviour
 
     void GetScore(int ScoreAmount)
     {
-
+        Score += ScoreAmount;
     }
 
     void PlayerLevelUp()

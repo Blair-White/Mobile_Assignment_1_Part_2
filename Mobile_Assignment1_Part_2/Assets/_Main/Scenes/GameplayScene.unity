@@ -1320,11 +1320,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d0cf61c4246c84439686347d30eb61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShootThrottle: 30
+  ShootThrottle: 5
   MissileThrottle: 120
   projectile: {fileID: 7263375029022629994, guid: cfc866c6c88125c4db83413357bcb3a2, type: 3}
   muzzle: {fileID: 502386603}
   missile: {fileID: 5459027366169295388, guid: 0f81c6db6e32ee8428d9bb842c06daea, type: 3}
+  mAudioPlayer: {fileID: 233585382}
   MissileAddedDamage: 0
   HealthBar: {fileID: 1254359709}
   ShieldBar: {fileID: 275510053}
@@ -1336,7 +1337,16 @@ MonoBehaviour:
   ShieldDisplayed: 0
   Exp: 0
   ExpDisplayed: 0
+  ShieldRegenRate: 0.001
   mRenderer: {fileID: 512916026}
+  mAudSource: {fileID: 233585383}
+  coinclips:
+  - {fileID: 8300000, guid: 52b03fa73174ac14f89b6e1dc4db86d9, type: 3}
+  - {fileID: 8300000, guid: 78eb74cf84915434b81559d0b4ea692d, type: 3}
+  - {fileID: 8300000, guid: f43e848a72b721c4683b26086d5b2767, type: 3}
+  - {fileID: 8300000, guid: ce2fe33b0644da74eaa144d0650c9854, type: 3}
+  HealSound: {fileID: 8300000, guid: a43334682ab103649a34ca5975992954, type: 3}
+  coinstate: 0
 --- !u!61 &512916031
 BoxCollider2D:
   m_ObjectHideFlags: 0

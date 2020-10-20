@@ -113,6 +113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 3
   explosion: {fileID: 7714141272751416648, guid: d76b72c51d87d564c946b7541f4cd3d9, type: 3}
+  coin: {fileID: 6943683688543953768, guid: 1845940c64ce3d545bbf3a0e6b9298ba, type: 3}
+  healthpack: {fileID: 1349786959833486194, guid: d22374657fe2dc048be964617cf97aaf, type: 3}
   mRenderer: {fileID: 8620077788043380086}
   AudioPlayer: {fileID: 0}
   AudioSrc: {fileID: 0}
