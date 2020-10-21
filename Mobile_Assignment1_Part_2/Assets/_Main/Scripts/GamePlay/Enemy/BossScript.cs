@@ -87,6 +87,8 @@ public class BossScript : MonoBehaviour
     {
         AudioSrc.PlayOneShot(ExplosionSound);
         Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        mPlayer.SendMessage("BossFinished");
         Destroy(this.gameObject);
+
     }
 }

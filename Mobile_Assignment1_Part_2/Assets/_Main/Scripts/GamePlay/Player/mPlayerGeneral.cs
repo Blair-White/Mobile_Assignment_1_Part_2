@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,7 +17,7 @@ public class mPlayerGeneral : MonoBehaviour
     public float ShieldRegenRate = 0.001f;
     private int Score, ScoreDisplayed, MyLevel;
     public SpriteRenderer mRenderer;
-    private bool isHit, isCollectCoin, isLvling;
+    private bool isHit, isCollectCoin, isLvling,initDeath;
     private int count, coinResetCount, lvlcount;
 
     public AudioSource mAudSource;
@@ -115,7 +116,10 @@ public class mPlayerGeneral : MonoBehaviour
 
     void PlayerKilled()
     {
-
+        initDeath = true;
+        Destroy(this.gameObject);
+        GameObject g = GameObject.Find("GamePlayController");
+        g.SendMessage("PlayerDied");
     }
 
     void PlayerHit(float Damage)
