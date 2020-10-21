@@ -25,7 +25,7 @@ public class WaverScript : MonoBehaviour
     void Update()
     {
         shootcount++;
-        if(shootcount > 300)
+        if(shootcount > 200)
         {
             GameObject b = Instantiate(mBullet, transform.position, Quaternion.identity);
             b.GetComponent<EnemyProjectile>().mDamage = .15f;
@@ -64,7 +64,7 @@ public class WaverScript : MonoBehaviour
         AudioSrc.PlayOneShot(ExplosionSound);
         Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
         GameObject c = Instantiate(coin, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-        c.GetComponent<CoinPickup>().expmultiplier = 3;
+        c.GetComponent<CoinPickup>().expmultiplier = 5;
         RollForHealthDrop();
         mPlayer.SendMessage("GetScore", Random.Range(25, 35));
         Destroy(this.gameObject);

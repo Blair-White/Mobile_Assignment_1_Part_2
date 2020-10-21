@@ -56,7 +56,7 @@ public class CrasherScript : MonoBehaviour
         AudioSrc.PlayOneShot(ExplosionSound);
         Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
         GameObject c = Instantiate(coin, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-        c.GetComponent<CoinPickup>().expmultiplier = 1;
+        c.GetComponent<CoinPickup>().expmultiplier = 2;
         mPlayer.SendMessage("GetScore", Random.Range(15, 35));
         RollForHealthDrop();
         Destroy(this.gameObject);

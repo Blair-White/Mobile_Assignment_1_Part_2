@@ -102,7 +102,7 @@ public class HoverController : MonoBehaviour
         AudioSrc.PlayOneShot(ExplosionSound);
         Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
         GameObject c = Instantiate(coin, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-        c.GetComponent<CoinPickup>().expmultiplier = 5;
+        c.GetComponent<CoinPickup>().expmultiplier = 8;
         RollForHealthDrop();
         mPlayer.SendMessage("GetScore", Random.Range(105, 155));
         Destroy(this.gameObject);

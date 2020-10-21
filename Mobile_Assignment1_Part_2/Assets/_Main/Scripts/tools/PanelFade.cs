@@ -24,8 +24,8 @@ public class PanelFade : MonoBehaviour
     void Update()
     {
         if (idle) return;
-        if(inout)  { this.GetComponent<Image>().color = new Color(0, 0, 0, this.GetComponent<Image>().color.a + rate); }
-        if(!inout) { this.GetComponent<Image>().color = new Color(0, 0, 0, this.GetComponent<Image>().color.a - rate); }
+        if(inout)  { this.GetComponent<Image>().color = new Color(this.GetComponent<Image>().color.r, this.GetComponent<Image>().color.g, this.GetComponent<Image>().color.b, this.GetComponent<Image>().color.a + rate); }
+        if(!inout) { this.GetComponent<Image>().color = new Color(this.GetComponent<Image>().color.r, this.GetComponent<Image>().color.g, this.GetComponent<Image>().color.b, this.GetComponent<Image>().color.a - rate); }
         if (inout && this.GetComponent<Image>().color.a >= 1) idle = true;
         if (!inout && this.GetComponent<Image>().color.a <= 0) idle = true;
     }

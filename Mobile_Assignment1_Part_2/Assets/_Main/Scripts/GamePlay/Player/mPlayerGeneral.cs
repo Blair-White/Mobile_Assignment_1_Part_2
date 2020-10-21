@@ -11,12 +11,13 @@ public class mPlayerGeneral : MonoBehaviour
     public GameObject projectile, muzzle, missile, mAudioPlayer;
     public int MissileAddedDamage = 0;
     public GameObject HealthBar, ShieldBar, ExpBar, ScoreText;
+    public GameObject LvlCannon, LvlMissile, LvlShield, LvlText;
     public float Health, HealthDisplayed, Shield, ShieldDisplayed, Exp, ExpDisplayed;
     public float ShieldRegenRate = 0.001f;
     private int Score, ScoreDisplayed, MyLevel;
     public SpriteRenderer mRenderer;
-    private bool isHit, isCollectCoin;
-    private int count, coinResetCount;
+    private bool isHit, isCollectCoin, isLvling;
+    private int count, coinResetCount, lvlcount;
 
     public AudioSource mAudSource;
     public AudioClip[] coinclips;
@@ -98,6 +99,17 @@ public class mPlayerGeneral : MonoBehaviour
           GameObject m = Instantiate(missile, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
           m.GetComponent<PlayerMissileScript>().AddedDamage = MissileAddedDamage;  
         }
+
+        if(isLvling)
+        {
+            lvlcount++;
+            if(lvlcount > 90)
+            {
+                lvlcount = 0;
+                isLvling = false;
+                endlevelup();
+            }
+        }
     }
 
 
@@ -169,6 +181,66 @@ public class mPlayerGeneral : MonoBehaviour
 
     void PlayerLevelUp()
     {
+        isLvling = true;
+        Exp = 0;
+        if(MyLevel == 1)
+        {
+            LvlCannon.SetActive(true);
+            LvlText.SetActive(true);
+            ShootThrottle -= 5;
+        }
+        if(MyLevel == 2)
+        {
+            LvlMissile.SetActive(true);
+            LvlText.SetActive(true);
+            MissileAddedDamage += 8;
+        }
+        if(MyLevel == 3)
+        {
+            LvlShield.SetActive(true);
+            LvlText.SetActive(true);
+            ShieldRegenRate += 0.001f;
+        }
+        
+        if(MyLevel == 4)
+        {
+            LvlCannon.SetActive(true);
+            LvlText.SetActive(true);
+            ShootThrottle -= 3;
+        }
+        if (MyLevel == 5)
+        {
+            LvlCannon.SetActive(true);
+            LvlText.SetActive(true);
+            ShootThrottle -= 3;
+
+        }
+        if(MyLevel == 6)
+        {
+            LvlCannon.SetActive(true);
+            LvlText.SetActive(true);
+            ShootThrottle -= 2;
+        }
+        if (MyLevel == 7)
+        {
+            LvlCannon.SetActive(true);
+            LvlText.SetActive(true);
+            ShootThrottle -= 2;
+        }
+        if (MyLevel == 8)
+        {
+            LvlMissile.SetActive(true);
+            LvlText.SetActive(true);
+            MissileAddedDamage += 5;
+        }
         MyLevel++;
+        
+    }
+    void endlevelup()
+    {
+        LvlCannon.SetActive(false);
+        LvlMissile.SetActive(false);
+        LvlShield.SetActive(false);
+        LvlText.SetActive(false);
     }
 }

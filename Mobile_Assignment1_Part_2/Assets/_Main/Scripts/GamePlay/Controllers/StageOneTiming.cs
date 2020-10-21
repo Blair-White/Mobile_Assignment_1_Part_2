@@ -52,11 +52,22 @@ public class StageOneTiming : MonoBehaviour
             case 76: StartCoroutine(SpawnPatherWave(12, 3, 0, 1, 0)); SpawnState = -1; break;
             case 80: Instantiate(Hoverer, HoverStart); SpawnState = -1; break;
             case 81: Instantiate(Hoverer, HoverStart); SpawnState = -1; break;
+            case 90: StartCoroutine(SpawnPatherWave(12, 3, 0, 1, 0)); SpawnState = -1; break;
+            case 98: StartCoroutine(SpawnPatherWave(12, 2, 0, 1, 0)); SpawnState = -1; break;
+            case 108: StartCoroutine(SpawnPatherWave(12, 1, 0, 1, 0)); SpawnState = -1; break;
+
+            case 125: SpawnBoss(); SpawnState = -1; break;
             case -1: break;
             default:
                 break;
         }
 
+    }
+
+    void SpawnBoss()
+    {
+        Debug.Log("BOSS SPAWNED");
+        this.GetComponent<BossIntroController>().enabled = true;
     }
 
     IEnumerator SpawnPatherWave(int HowMany, int path, float intervalCount, float interval, int Spawned = 0)
